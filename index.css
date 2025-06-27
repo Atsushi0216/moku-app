@@ -1,0 +1,341 @@
+/* 基本スタイル */
+:root {
+    --primary-color: #4a90e2;
+    --primary-hover-color: #357ABD;
+    --background-color: #f4f7f6;
+    --container-bg-color: rgba(255, 255, 255, 0.9);
+    --text-color: #333;
+    --border-color: #ddd;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: linear-gradient(to bottom, #a0d8ef 0%, #c1eeb1 100%);
+    background-attachment: fixed;
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* メインコンテナ */
+.container {
+    background-color: var(--container-bg-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    padding: 20px 40px;
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+header {
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+}
+
+h1 {
+    color: var(--primary-color);
+    margin: 0;
+}
+
+h2 {
+    color: var(--text-color);
+    font-weight: 400;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 5px;
+    margin-top: 0;
+}
+
+/* フォームセクション */
+.input-section {
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+input[type="date"],
+input[type="number"],
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: inherit;
+}
+
+input[type="file"] {
+    padding: 5px;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.form-actions button {
+    width: 100%; /* flex-basis for flex items */
+}
+
+button[type="submit"] {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    flex-grow: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+button[type="submit"]:hover {
+    background-color: var(--primary-hover-color);
+}
+
+#cancel-button {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+#cancel-button:hover {
+    background-color: #5a6268;
+}
+
+.hidden {
+    display: none;
+}
+
+/* 記録リスト */
+#records-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#records-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+
+#records-list li:last-child {
+    border-bottom: none;
+}
+
+#records-list li:hover {
+    background-color: #eaf2fb;
+}
+
+#records-list li .record-text::after {
+    content: '📷';
+    margin-left: 8px;
+    font-size: 14px;
+    display: none;
+}
+
+#records-list li.has-image .record-text::after {
+    display: inline;
+}
+
+
+/* モーダル */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.85);
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.close-button {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #bbb;
+    text-decoration: none;
+}
+
+/* ビュー切り替え */
+.view {
+    display: none;
+}
+.view.active {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* タブナビゲーション */
+.tab-nav {
+    display: flex;
+    border-top: 1px solid var(--border-color);
+    margin-top: 20px;
+    padding-top: 10px;
+}
+
+.tab-nav button {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: inherit;
+    color: var(--text-color);
+    border-bottom: 3px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.tab-nav button:hover {
+    color: var(--primary-color);
+}
+
+.tab-nav button.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* 写真ギャラリー */
+#photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    padding: 10px 0;
+}
+
+.photo-card {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    aspect-ratio: 1 / 1;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.photo-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.photo-card .photo-date {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+    color: white;
+    padding: 15px 8px 8px 8px;
+    font-size: 12px;
+    text-align: right;
+    font-weight: 700;
+}
+
+
+/* グラフコンテナ */
+#graph-container {
+    width: 100%;
+    min-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #666;
+}
+
+#graph-container svg text {
+    font-family: inherit;
+    font-size: 12px;
+}

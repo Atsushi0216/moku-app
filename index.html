@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>もくの成長記録</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/index.css">
+</head><body>
+    <div class="container">
+        <header>
+            <h1>もくの成長記録 🐏💖</h1>
+        </header>
+        <main>
+            <div id="records-view" class="view active">
+                <section class="input-section">
+                    <h2 id="form-title">新しい記録を追加</h2>
+                    <form id="record-form">
+                        <div class="form-group">
+                            <label for="date-input">日付</label>
+                            <input type="date" id="date-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="weight-input">体重 (kg)</label>
+                            <input type="number" id="weight-input" step="0.1" placeholder="例: 5.2" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="image-input">その日の写真</label>
+                            <input type="file" id="image-input" accept="image/*">
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" id="submit-button">🐾 記録を追加</button>
+                            <button type="button" id="cancel-button" class="hidden">キャンセル</button>
+                        </div>
+                    </form>
+                </section>
+                <section class="records-section">
+                    <h2>成長の記録</h2>
+                    <ul id="records-list">
+                        <!-- 記録はここに表示されます -->
+                    </ul>
+                </section>
+            </div>
+
+            <div id="graph-view" class="view">
+                 <section class="records-section">
+                    <h2>体重の推移グラフ</h2>
+                    <div id="graph-container">
+                        <!-- グラフはここに表示されます -->
+                    </div>
+                 </section>
+            </div>
+
+            <div id="photo-view" class="view">
+                <section class="records-section">
+                    <h2>写真館 🖼️</h2>
+                    <div id="photo-gallery">
+                        <!-- 写真はここに表示されます -->
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <nav class="tab-nav">
+            <button id="records-tab" class="active">
+                <span class="tab-icon">📝</span>
+                <span class="tab-label">記録</span>
+            </button>
+            <button id="graph-tab">
+                <span class="tab-icon">📈</span>
+                <span class="tab-label">グラフ</span>
+            </button>
+            <button id="photo-tab">
+                <span class="tab-icon">📸</span>
+                <span class="tab-label">写真</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- 画像表示用モーダル -->
+    <div id="image-modal" class="modal">
+        <span class="close-button">&times;</span>
+        <img class="modal-content" id="modal-image">
+    </div>
+
+    <!-- The index.tsx script is imported automatically -->
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
